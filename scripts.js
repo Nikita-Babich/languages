@@ -9,8 +9,8 @@ async function fetchQuote() {
     }
 }
 
-async function fetchTranslation(sentence) {
-    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(sentence)}&langpair=en|de`;
+async function fetchTranslation(sentence, targetLang) {
+    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(sentence)}&langpair=en|${encodeURIComponent(targetLang)}`;
     try {
         const response = await fetch(url); // Fetch the translation
         const data = await response.json(); // Parse the JSON response
@@ -21,14 +21,28 @@ async function fetchTranslation(sentence) {
     }
 }
 
+function clean(){
+	document.getElementById('english').innerText = '';
+	document.getElementById('german').innerText = '';
+	document.getElementById('slovak').innerText = '';
+	document.getElementById('russian').innerText = '';
+}
+
 document.getElementById('refreshButton').addEventListener('click', 
 	async () => {
+		clean();
 		const quote = await fetchQuote(); // Fetch the quote
 		document.getElementById('english').innerText = quote; // Display the quote in the div
 		
-			
-		const translation = await fetchTranslation(quote); // Fetch the translation
+			let translation;
+		translation = await fetchTranslation(quote, 'de'); // Fetch the translation
 		document.getElementById('german').innerText = translation; // Display the translation in the german div
+		
+		translation = await fetchTranslation(quote, 'sk'); 
+		document.getElementById('slovak').innerText = translation; 
+		
+		translation = await fetchTranslation(quote, 'ru'); 
+		document.getElementById('russian').innerText = translation; 
 	}
 
 
