@@ -21,7 +21,7 @@ body {
     justify-content: center; /* Centers horizontally */
     align-items: center; 
 }
-#refresh {
+#refreshButton {
     padding: 10px 20px;
     background-color: #454; /* Green background */
     border: 4px solid #333;
@@ -33,7 +33,7 @@ body {
     cursor: pointer; /* Pointer cursor on hover */
     transition: background-color 0.2s ease; /* Smooth transition */
 }
-#refresh:hover {
+#refreshButton:hover {
 	background-color: #383;
 	
 }
