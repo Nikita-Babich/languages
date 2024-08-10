@@ -18,8 +18,12 @@ body {
 
 .center-flex {
     display: flex;
+	flex-direction: column;
     justify-content: center; /* Centers horizontally */
     align-items: center; 
+}
+.langbox {
+	margin-bottom: 10px;
 }
 #refreshButton {
     padding: 10px 20px;
